@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #C5E898;
+}
+/* .box{
+    display: inline;
+    /* width: 100px;
+    height: 100px; 
+    width: 7rem;
+    height: 7rem;
+    /* border: 1px solid black; 
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    background-color: aquamarine;
+} */
+
+h2{
+    margin: 2rem;
+    margin-left: 5rem;
+    color: #29ADB2;
+}
+#winner{
+    color: #0766AD;
+}
+
+#btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 4rem;
+    height: 2rem;
+    margin: 10% 38%;
+    background-color: #29ADB2;
+    color: white;
+    cursor: pointer;
+}
+
+.line1{
+    /* display: inline; */
+}
+.box1{
+    /* position:fixed; */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    height: 7rem;
+    background-color: #F3F3F3;
+    cursor:pointer;
+    border-radius: 10px;
+    font-size: 2rem;
+    /* margin: 1rem 1rem; */
+    color: #29ADB2;
+
+}
+.line1, .line2, .line2{
+    margin: 1rem 0;
+}
+
+.hide{
+    visibility: hidden;
+    
+}
+.disabled {
+    pointer-events: none;
+    /* opacity: 0.5; */
+}
+.res{
+    /* display: inline-block;
+    position: relative;
+    top :19rem;
+    right:13rem; */
+  margin: 0 6rem;
+
+}
+    </style>
+</head>
+<body>
+  
+    <div class="main">
+      <h2>----Tic Tac Toe----</h2>
+    <div class="line1">
+    <div class="box1"><p class="hide">0</p></div>
+    <div class="box1"><p class="hide">0</p></div>
+    <div class="box1"><p class="hide">0</p></div>
+    </div>
+    <div class="line2">
+        <div class="box1"><p class="hide">0</p></div>
+        <div class="box1"><p class="hide">0</p></div>
+        <div class="box1"><p class="hide">0</p></div>
+    </div>
+    <div class="line3">
+        <div class="box1"><p class="hide">0</p></div>
+        <div class="box1"><p class="hide">0</p></div>
+        <div class="box1"><p class="hide">0</p></div>
+    </div>
+    <button id="btn">Restart</button>
+    <div class="res">
+        <h1 id="winner"></h1>
+   </div>
+    </div>
+  
+   
+
+    <!-- <script src="/app.js"></script> -->
+    <script>
+        let Oturn = true;
+const bt = document.getElementById("btn");
+bt.addEventListener("click",refresh);
+function refresh(){
+    window.location.reload();
+}
+let b1=-1,b2=-1,b3=-1,b4=-1,b5=-1,b6=-1,b7=-1,b8=-1,b9 = -1;
+
+function chck(){
+    console.log(b1);
+   if((b1==b2 && b2==b3)&&(b1!=-1)){
+   
+    return true;
+   }
+   else if((b4==b5 && b5==b6)&&(b4!=-1)){
+    return true;
+   }
+   else if((b7==b8 && b8==b9)&&(b7!=-1)){
+    console.log(b7,b8,b9);
+    return true;
+   }
+   else if((b1==b5 && b5==b9)&&(b1!=-1)){
+    return true;
+   }
+   else if((b3==b5 && b5==b7)&&(b3!=-1)){
+    return true;
+   }
+   else if((b1==b4 && b4==b7)&&(b4!=-1)){
+    return true;
+   }
+   else if((b2==b5 && b5==b8)&&(b2!=-1)){
+    return true;
+   }
+   else if((b3==b6 && b6==b9)&&(b3!=-1)){
+    return true;
+   }
+   else{
+    // console.log(b1,b2,b3,b4,b5,b6,b7,b8,b9);
+    if(b1!=-1 && b2!=-1 && b3!=-1 && b4!=-1 && b5!=-1 && b6!=-1 && b7!=-1 && b8!=-1 && b9!=-1){
+        document.getElementById("winner").innerHTML = "Game draw!!!";
+        let audio = new Audio("wahwahwahwaaaahahahahahaha-94669.mp3");
+        audio.play();
+    }
+    return false;
+   }
+}
+
+for(let i=0;i<document.querySelectorAll(".box1").length;i++){
+    document.querySelectorAll(".box1")[i].addEventListener("click",()=>{
+        if(Oturn){
+        document.getElementsByClassName("box1")[i].innerHTML = "O";
+        let element = document.getElementsByClassName("box1")[i];
+        element.classList.add('disabled');
+        let audio = new Audio("tap-notification-180637.mp3");
+        audio.play();
+        switch(i){
+            case 0:
+                b1 = document.getElementsByClassName("box1")[i].innerHTML;
+               
+                // console.log(element);
+
+                // console.log(b1);
+                break;
+            case 1:
+                b2 = document.getElementsByClassName("box1")[i].innerHTML;
+                break;
+            case 2:
+                b3 = document.getElementsByClassName("box1")[i].innerHTML;
+                break;
+            case 3:
+                b4 = document.getElementsByClassName("box1")[i].innerHTML;
+                 break;
+            case 4:
+                b5 = document.getElementsByClassName("box1")[i].innerHTML;
+            break;
+            case 5:
+                b6 = document.getElementsByClassName("box1")[i].innerHTML;
+                break;
+            case 6:
+              b7 = document.getElementsByClassName("box1")[i].innerHTML;
+               break;
+            case 7:
+                b8 = document.getElementsByClassName("box1")[i].innerHTML;
+                break;
+            case 8:
+                b9 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+
+        }
+        Oturn = false;
+        if(chck()){
+            let audio = new Audio("success-fanfare-trumpets-6185.mp3");
+            audio.play();
+            document.getElementById("winner").innerHTML = "O is Winner";
+        //      let element=document.querySelectorAll(".box1");
+        //      element.classList.add("disabled");
+          for(let k=0;k<document.querySelectorAll(".box1").length;k++){
+            let element=document.querySelectorAll(".box1")[k];
+            element.classList.add("disabled");
+            }
+        }
+      
+        
+        }
+        else{
+            document.getElementsByClassName("box1")[i].innerHTML = "X";
+            let element = document.getElementsByClassName("box1")[i];
+            element.classList.add('disabled');
+            let audio = new Audio("tap-notification-180637.mp3");
+            audio.play();
+            switch(i){
+                case 0:
+                    b1 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+                case 1:
+                    b2 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+                case 2:
+                    b3 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+                case 3:
+                    b4 = document.getElementsByClassName("box1")[i].innerHTML;
+                     break;
+                case 4:
+                    b5 = document.getElementsByClassName("box1")[i].innerHTML;
+                break;
+                case 5:
+                    b6 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+                case 6:
+                  b7 = document.getElementsByClassName("box1")[i].innerHTML;
+                   break;
+                case 7:
+                    b8 = document.getElementsByClassName("box1")[i].innerHTML;
+                    break;
+                case 8:
+                    b9 = document.getElementsByClassName("box1")[i].innerHTML;
+                        break;
+    
+            }
+            Oturn = true;
+            if(chck()){
+                let audio = new Audio("success-fanfare-trumpets-6185.mp3");
+            audio.play();
+                document.getElementById("winner").innerHTML = "X is Winner";
+                for(let k=0;k<document.querySelectorAll(".box1").length;k++){
+                let element=document.querySelectorAll(".box1")[k];
+                element.classList.add("disabled");
+                }
+            //  
+                // console.log(element);
+
+            }
+            Oturn = true;
+          
+        
+        }
+    })
+}
+    </script>
+</body>
+</html>
